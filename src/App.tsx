@@ -14,7 +14,7 @@ function App() {
     {id: v1(), title: 'Redux', isDone: true},
   ]);
 
-  console.log()
+ 
   
 
   let[filter, setFilter] = useState<FilterValuesType>("all")
