@@ -1,5 +1,6 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import { FilterValuesType } from './App';
+import { AddItemForm } from './AddItemForm';
 
 export type TaskType = {
     id: string,
@@ -20,27 +21,6 @@ type PropsType = {
 }
 
 export function Todolist(props: PropsType){
-  const [title, setTitle] = useState("")
-  const [error, setError] = useState<string | null>(null)
-
-  const addTask = () => {
-    if (title.trim() !== "") {
-      props.addTask(title.trim(), props.id)
-      setTitle("")
-    } else {
-      setError("Field is required")
-    }
-  }
-
-  const onNewTitleChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.currentTarget.value)
-  }
-  const OnKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {  
-    setError(null)  
-    if (e.charCode === 13) {
-      addTask()
-  }}
-  
   const onAllClickHandler = () => props.changeFilter("all", props.id)
   const onActiveClickHandler = () => props.changeFilter("active", props.id)
   const onCompletedClickHandler = () => props.changeFilter("completed", props.id)
@@ -51,16 +31,7 @@ export function Todolist(props: PropsType){
     return (
     <div>
       <h3>{props.title} <button onClick={removeTodolist}>x</button></h3> 
-      <div>
-        <input 
-          value={title}
-          onChange={onNewTitleChangeHandler}
-          onKeyPress= {OnKeyPressHandler}
-          className= {error? "error" : ""}
-        />
-        <button onClick={addTask}>+</button>
-        {error && <div className="error-message">{error}</div>}
-      </div>
+      <AddItemForm id={props.id} addItem={props.addTask} />
       <ul>
         {/* map - это метод массива, который на основе каждого объекта или элемента массива создаёт какой-то другой элемент */}
         {
@@ -87,7 +58,7 @@ export function Todolist(props: PropsType){
                 onClick={onActiveClickHandler}>Active</button>
         <button className={props.filter === 'completed' ? "active-filter" : ""}
                 onClick={onCompletedClickHandler}>Completed</button>
-        </div>
+      </div>
     </div>
     )
   }
