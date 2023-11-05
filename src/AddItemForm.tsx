@@ -39,8 +39,8 @@ export function AddItemForm(props: AddItemFormPropsType) {
         label={"Type value"}
         helperText={error}
       />
-      <IconButton onClick={addTask}  color={"primary"}>
-       <ControlPoint/>
+      <IconButton onClick={addTask} color={"primary"}>
+        <ControlPoint />
       </IconButton>
     </div>
   );

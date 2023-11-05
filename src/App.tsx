@@ -16,7 +16,7 @@ import {
 import { Menu } from "@mui/icons-material";
 
 export type FilterValuesType = "all" | "completed" | "active";
-type TodolistType = {
+export type TodolistType = {
   id: string;
   title: string;
   filter: FilterValuesType;
@@ -85,10 +85,10 @@ function App() {
     { id: todolistId2, title: "What to buy", filter: "all" },
   ]);
 
-  let removeTodolist = (todolistId: string) => {
-    let filteredTodolist = todolists.filter((tl) => tl.id !== todolistId);
+  let removeTodolist = (id: string) => {
+    let filteredTodolist = todolists.filter((tl) => tl.id !== id);
     setTodolists(filteredTodolist);
-    delete tasksObj[todolistId];
+    delete tasksObj[id];
     setTasks({ ...tasksObj });
   };
   let changeTodolistTitle = (id: string, newTitle: string) => {
