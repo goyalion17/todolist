@@ -55,6 +55,7 @@ function App() {
       setTasks({ ...tasksObj });
     }
   }
+
   function changeTaskTitle(
     taskId: string,
     newTitle: string,
@@ -91,6 +92,7 @@ function App() {
     delete tasksObj[id];
     setTasks({ ...tasksObj });
   };
+  
   let changeTodolistTitle = (id: string, newTitle: string) => {
     const todoList = todolists.find((tl) => tl.id === id);
     if (todoList) {
